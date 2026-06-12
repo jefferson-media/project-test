@@ -1,107 +1,604 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Review: The Smart Glasses of 2026</title>
+    <title>Jefferson — Creative Director & Frontend Engineer</title>
+    <!-- Tailwind CSS for robust structural utilities -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Outfit & Playfair fonts for a high-end, modern editorial contrast -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
     <style>
-        /* This is the CSS section where we style the plain text */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f5f5f7;
-            color: #1d1d1f;
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
+            font-family: 'Outfit', sans-serif;
+            background-color: #12131a; /* Elegant Space Gray/Titanium Dark-mode background */
+            color: #f5f5f7;
+            overflow-x: hidden;
+            perspective: 1000px;
         }
 
-        .article-container {
-            max-width: 680px;
-            margin: 0 auto;
+        /* Highly distinct glassmorphic elements optimized for elevated titanium base */
+        .glass-nav {
+            background: rgba(26, 28, 38, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(30, 32, 45, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 32px 0 rgba(0, 0, 0, 0.25);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card-hover:hover {
+            background: rgba(38, 41, 58, 0.7);
+            border-color: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 20px 48px 0 rgba(99, 102, 241, 0.15);
+            transform: translateY(-6px);
+        }
+
+        /* Distinct, high-contrast buttons */
+        .btn-primary {
             background-color: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            color: #0d0e12;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+        }
+        .btn-primary:hover {
+            background-color: #f0f0f3;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.25);
         }
 
-        .category {
-            text-transform: uppercase;
-            font-size: 12px;
-            font-weight: 700;
-            color: #0066cc;
-            letter-spacing: 1px;
+        /* Custom scrollbar matching titanium theme */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #12131a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid #12131a;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
-        h1 {
-            font-size: 36px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin: 8px 0 16px 0;
+        /* Dedicated Parallax Scroll Elements container positioning */
+        .parallax-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
         }
 
-        .meta-info {
-            font-size: 14px;
-            color: #86868b;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #e5e5e7;
-            padding-bottom: 15px;
+        /* 3D Isometric Viewport Container */
+        .perspective-container {
+            perspective: 2500px;
         }
 
-        p {
-            font-size: 18px;
-            margin-bottom: 24px;
-        }
-
-        /* Our specialized visual score box */
-        .review-box {
-            background-color: #f5f5f7;
-            border-left: 5px solid #0066cc;
-            padding: 24px;
-            border-radius: 4px;
-            margin-top: 40px;
-        }
-
-        .score {
-            font-size: 48px;
-            font-weight: 900;
-            color: #0066cc;
-            margin: 0;
-        }
-
-        .verdict {
-            font-weight: 700;
-            font-size: 20px;
-            margin: 8px 0;
+        /* Smooth custom transitions */
+        .smooth-transition {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
 </head>
-<body>
+<body class="relative min-h-screen selection:bg-indigo-500 selection:text-white">
 
-    <div class="article-container">
+    <!-- PARALLAX BACKGROUND LAYERS: Shifting dynamically based on scroll math in JS -->
+    <div class="parallax-wrapper">
+        <!-- Giant decorative glass sheets that move at different rates -->
+        <div class="absolute w-[600px] h-[600px] rounded-full bg-indigo-600/10 blur-[150px] top-[-5%] left-[-10%] parallax-element" data-scroll-speed="-0.15"></div>
+        <div class="absolute w-[700px] h-[700px] rounded-full bg-purple-600/10 blur-[160px] top-[30%] right-[-10%] parallax-element" data-scroll-speed="0.2"></div>
+        <div class="absolute w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[140px] bottom-[10%] left-[5%] parallax-element" data-scroll-speed="-0.1"></div>
         
-        <span class="category">Hardware Review</span>
+        <!-- Physical graphic boards (translucent glass cards floating in the background space) -->
+        <div class="absolute top-[40%] left-[8%] w-48 h-48 rounded-[32px] border border-white/5 bg-white/2 backdrop-blur-[2px] hidden lg:block parallax-element rotate-[15deg]" data-scroll-speed="-0.3"></div>
+        <div class="absolute top-[75%] right-[6%] w-72 h-72 rounded-[48px] border border-white/5 bg-white/2 backdrop-blur-[3px] hidden lg:block parallax-element rotate-[-12deg]" data-scroll-speed="0.4"></div>
+        <div class="absolute top-[125%] left-[4%] w-56 h-56 rounded-[40px] border border-white/5 bg-white/2 backdrop-blur-[1px] hidden lg:block parallax-element rotate-[45deg]" data-scroll-speed="-0.2"></div>
+
+        <!-- Fine interactive spatial grid overlay -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+    </div>
+
+    <!-- Navigation Bar: High Contrast and Extremely Distinct against updated canvas -->
+    <header class="fixed top-6 left-0 right-0 z-50 px-4">
+        <nav class="max-w-5xl mx-auto glass-nav rounded-full px-6 py-4 flex items-center justify-between shadow-2xl">
+            <!-- Sleek Tech Logo -->
+            <a href="#" class="text-2xl font-black tracking-tight text-white hover:opacity-85 transition flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-indigo-500 inline-block shadow-[0_0_12px_#6366f1]"></span>
+                jefferson.
+            </a>
+
+            <!-- Centered Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-sm font-medium text-gray-300 hover:text-white transition">About</a>
+                <a href="#portfolio" class="text-sm font-medium text-gray-300 hover:text-white transition">Showreel</a>
+                <a href="#experience" class="text-sm font-medium text-gray-300 hover:text-white transition">History</a>
+                <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-white transition">Contact</a>
+            </div>
+
+            <!-- Highly visible High-Contrast Action Button -->
+            <div>
+                <a href="#contact" class="btn-primary font-bold text-xs tracking-wide uppercase px-5 py-3 rounded-full inline-block">
+                    Let's Create ↗
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero / Showcase Section -->
+    <section class="relative min-h-screen pt-36 pb-20 flex flex-col items-center justify-center z-10 px-4 overflow-hidden">
         
-        <h1>The Iris Glass Pro: A Week With Apple's True Smart Glasses</h1>
-        
-        <div class="meta-info">
-            Published on June 11, 2026 • Written by Tech Enthusiast
-        </div>
-
-        <p>After years of concept renders and heavy developer headsets, the promise of true augmented reality has finally arrived on our faces in a frame that looks entirely normal.</p>
-
-        <p>The <strong>Iris Glass Pro</strong> weights just 48 grams. When you put them on, the real world doesn't disappear. Instead, crisp digital text and directions float seamlessly over your actual environment. Reading notifications while walking down the street feels fluid, fast, and surprisingly non-intrusive.</p>
-
-        <p>Battery life is the real shocker here. Thanks to a highly efficient custom chipset, these glasses easily lasted through an entire 14-hour workday of navigation, notifications, and quick audio calls before needing to snap back into their charging case.</p>
-
-        <div class="review-box">
-            <p class="score">9.2 / 10</p>
-            <p class="verdict">The Verdict: The Future is Finally Here</p>
-            <p style="font-size: 16px; margin: 0; color: #515154;">
-                While the RM3,500 price tag will keep it out of reach for casual consumers, early adopters and productivity tech fans will find it an incredible glimpse into a screenless future.
+        <!-- Large Apple-style Bold Typography Content -->
+        <div class="max-w-4xl text-center mb-12 relative z-20">
+            <span class="text-xs tracking-[0.25em] font-extrabold text-indigo-400 uppercase inline-block mb-4 bg-indigo-500/10 px-5 py-2 rounded-full border border-indigo-500/30">
+                CREATIVE PORTFOLIO & WORKREEL
+            </span>
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight text-white leading-none mb-6">
+                JEFFERSON <br>
+                <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">DIMENSIONAL.</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Exploring the boundaries of motion design, high-fidelity interaction, and commercial video direction. Welcome to my creative workspace.
             </p>
         </div>
 
-    </div>
+        <!-- CSS/SVG Mockup of iPhone 17 Pro Max with Parallax Scroll Translation -->
+        <div class="perspective-container w-full max-w-[340px] sm:max-w-[380px] h-auto relative z-20 cursor-pointer mb-8 parallax-element" data-scroll-speed="-0.2" id="hero-device-wrapper">
+            <!-- The iPhone chassis container -->
+            <div id="iphone-17-device" class="w-full aspect-[9/18.5] glass-card rounded-[55px] p-2 border-[6px] border-[#2e313e] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] relative transition-transform duration-200 ease-out">
+                
+                <!-- Polished Titanium Edge Highlights -->
+                <div class="absolute inset-[-1px] rounded-[54px] border border-white/10 pointer-events-none"></div>
+                <!-- Dynamic island-less fully hidden notch screen graphic representing iPhone 17 Pro -->
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-1 bg-black/60 rounded-full z-30 flex items-center justify-center">
+                    <!-- Embedded camera lens reflection -->
+                    <div class="w-2.5 h-2.5 rounded-full bg-[#080d18] border border-white/5 relative flex items-center justify-center">
+                        <div class="w-1 h-1 rounded-full bg-blue-950/80"></div>
+                    </div>
+                </div>
 
+                <!-- Internal Screen Interface Frame -->
+                <div class="w-full h-full rounded-[48px] bg-[#0c0d12] overflow-hidden relative border border-black flex flex-col justify-between p-6">
+                    
+                    <!-- Screen Ambient Glow background inside device -->
+                    <div class="absolute -top-12 -left-12 w-48 h-48 bg-purple-500/20 filter blur-3xl rounded-full"></div>
+                    <div class="absolute -bottom-12 -right-12 w-48 h-48 bg-blue-500/20 filter blur-3xl rounded-full"></div>
+
+                    <!-- Screen UI - Top Panel -->
+                    <div class="flex items-center justify-between text-[11px] text-gray-400 font-semibold z-20 relative pt-1">
+                        <span>9:41</span>
+                        <div class="flex items-center gap-1.5">
+                            <!-- 5G Bars -->
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M4 18h2v2H4zm4-4h2v6H8zm4-4h2v10h-2zm4-4h2v14h-2zm4-4h2v18h-2z"/></svg>
+                            <!-- Battery Capsule -->
+                            <div class="w-5.5 h-3 border border-gray-400 rounded-sm p-[1px] flex items-center">
+                                <div class="w-3.5 h-full bg-white rounded-2xs"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen Content Middle (Futuristic Showcase Panel) -->
+                    <div class="my-auto z-20 text-left relative flex flex-col gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 flex items-center justify-center border border-indigo-400/30">
+                            <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white leading-tight">Jefferson's Media Reel</h3>
+                            <p class="text-xs text-gray-400 mt-1">Scroll down to view my custom cinematic works and direct designs.</p>
+                        </div>
+                        <!-- Mini glass button mimicking dynamic app widget -->
+                        <div class="glass-card rounded-2xl p-3 border border-white/10 flex items-center gap-3 bg-white/5">
+                            <div class="w-8 h-8 rounded-full bg-red-500/30 flex items-center justify-center text-red-400 text-xs font-bold animate-pulse">●</div>
+                            <div>
+                                <h4 class="text-[10px] text-gray-300 font-bold tracking-wide uppercase">Active Showreel</h4>
+                                <p class="text-xs text-white font-medium">Stream Active — 4K</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen UI - Bottom Panel -->
+                    <div class="z-20 relative flex justify-center pb-2">
+                        <!-- Navigation Indicator Pill -->
+                        <div class="w-32 h-1 bg-white/40 rounded-full"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Downward Indicator -->
+        <a href="#about" class="z-20 text-sm font-medium text-gray-400 hover:text-white transition flex flex-col items-center gap-2 mt-4 group">
+            Scroll to meet Jefferson
+            <svg class="w-5 h-5 group-hover:translate-y-1 transition duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+            </svg>
+        </a>
+
+    </section>
+
+    <!-- Profile / Introduction Section -->
+    <section id="about" class="relative z-20 py-32 px-4 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Editorial Block introducing Jefferson -->
+            <div class="md:col-span-7 space-y-6">
+                <span class="text-sm font-extrabold text-indigo-400 uppercase tracking-widest">ABOUT JEFFERSON</span>
+                
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                    Fusing cinematic direction with pixel-perfect design.
+                </h2>
+                
+                <p class="text-gray-300 text-lg leading-relaxed font-light">
+                    Hi, I'm <strong class="font-semibold text-white">Jefferson</strong>. I operate at the intersection of video production, spatial layout architectures, and interactive digital interfaces. My mission is to build highly expressive, visual projects that command viewer attention.
+                </p>
+                <p class="text-gray-300 text-lg leading-relaxed font-light">
+                    Whether crafting multi-layer camera sequences in modern video software or engineering high-performance responsive interfaces, I focus heavily on tactile transitions and stunning compositions.
+                </p>
+
+                <!-- High contrast signature style quote -->
+                <div class="border-l-4 border-indigo-500 pl-4 py-1 mt-6">
+                    <p class="italic text-gray-400 font-serif text-lg">
+                        "Great experiences aren't just built; they are choreographed."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Interactive Portrait & Bento Block -->
+            <div class="md:col-span-5 flex flex-col gap-6">
+                <!-- Jefferson Portrait Card (Uses premium unsplash vector background and styled layout frame) -->
+                <div class="glass-card rounded-[32px] overflow-hidden p-3 border border-white/10 group">
+                    <div class="w-full aspect-square rounded-[24px] bg-gradient-to-tr from-indigo-500 via-[#1c1e29] to-purple-600 relative overflow-hidden flex items-center justify-center">
+                        <!-- Abstract Geometric Vector Frame mimicking portrait profile -->
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)]"></div>
+                        <svg class="w-40 h-40 text-white/15 absolute group-hover:scale-110 smooth-transition" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
+                        </svg>
+                        
+                        <!-- Premium Portfolio Initial Branding Overlay -->
+                        <div class="absolute bottom-6 left-6 text-left">
+                            <h3 class="text-2xl font-black text-white">JEFFERSON</h3>
+                            <p class="text-xs text-indigo-300 font-semibold tracking-wider uppercase mt-1">Creative Director</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live stats display -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-card glass-card-hover rounded-2xl p-5 border border-white/5">
+                        <span class="text-3xl font-black text-indigo-400 inline-block mb-1">6+</span>
+                        <h4 class="text-xs font-bold text-white uppercase tracking-wider">Years Crafting</h4>
+                    </div>
+                    <div class="glass-card glass-card-hover rounded-2xl p-5 border border-white/5">
+                        <span class="text-3xl font-black text-purple-400 inline-block mb-1">45+</span>
+                        <h4 class="text-xs font-bold text-white uppercase tracking-wider">Films Produced</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Portfolio Video Section -->
+    <section id="portfolio" class="relative z-20 py-32 bg-black/25 border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-4">
+            
+            <!-- Section Title -->
+            <div class="mb-16 text-center md:text-left">
+                <span class="text-sm font-extrabold text-indigo-400 uppercase tracking-widest">SHOWCASE REEL</span>
+                <h2 class="text-4xl sm:text-5xl font-black tracking-tight text-white mt-2">
+                    JEFFERSON'S MOTION WORKS
+                </h2>
+                <p class="text-gray-300 text-lg mt-3 max-w-2xl font-light">
+                    A collection of high-concept visual directions, cinematic commercial structures, and interactive layouts. Click to engage.
+                </p>
+            </div>
+
+            <!-- Bento Video Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Main Featured Video Card (Highly Elevated UI) -->
+                <div class="glass-card rounded-[36px] overflow-hidden border border-white/10 md:col-span-2 shadow-2xl">
+                    <div class="aspect-video w-full bg-black relative">
+                        <!-- High fidelity YouTube layout component -->
+                        <iframe 
+                            class="w-full h-full rounded-t-[34px]" 
+                            src="https://www.youtube.com/embed/ScMzIvxBSi4?si=AppleVisionProShowcase" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-[#1a1c26]/80">
+                        <div>
+                            <span class="text-xs font-extrabold text-indigo-400 uppercase tracking-wider bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">Featured Work</span>
+                            <h3 class="text-2xl font-bold text-white mt-2">Next Gen Visual Space Spec</h3>
+                            <p class="text-gray-400 text-sm mt-1">A cinematic exploration focusing on physical rendering aesthetics.</p>
+                        </div>
+                        <a href="#contact" class="btn-primary font-bold text-xs tracking-wider uppercase px-6 py-3 rounded-full inline-block whitespace-nowrap">
+                            Request Collaboration ↗
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Secondary Portfolio Video 1 -->
+                <div class="glass-card rounded-[32px] overflow-hidden border border-white/10 flex flex-col justify-between shadow-xl">
+                    <div class="aspect-video w-full bg-black">
+                        <iframe 
+                            class="w-full h-full" 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-6 bg-[#1a1c26]/80 flex-grow">
+                        <span class="text-xs font-extrabold text-purple-400 uppercase tracking-wider">Concept Layout Reel</span>
+                        <h3 class="text-xl font-bold text-white mt-2">Modern Compositions & Beats</h3>
+                        <p class="text-gray-400 text-xs mt-1">Exploring visual cuts synchronized directly to algorithmic audio tracks.</p>
+                    </div>
+                </div>
+
+                <!-- Secondary Portfolio Video 2 -->
+                <div class="glass-card rounded-[32px] overflow-hidden border border-white/10 flex flex-col justify-between shadow-xl">
+                    <div class="aspect-video w-full bg-black">
+                        <iframe 
+                            class="w-full h-full" 
+                            src="https://www.youtube.com/embed/Fp9p_JHdzP8" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-6 bg-[#1a1c26]/80 flex-grow">
+                        <span class="text-xs font-extrabold text-blue-400 uppercase tracking-wider">Commercial Direction</span>
+                        <h3 class="text-xl font-bold text-white mt-2">Studio Hardware Promo Concept</h3>
+                        <p class="text-gray-400 text-xs mt-1">Professional panning sequence exploration showcasing metal geometries.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EXPLICIT PARALLAX SCROLL INTERMISSION SECTION -->
+    <section class="relative h-[65vh] flex items-center justify-center overflow-hidden border-b border-white/5">
+        <!-- Parallax Background Layer specific to this section -->
+        <div class="absolute inset-0 bg-[#161722] w-full h-[150%] top-[-25%] parallax-element select-none pointer-events-none" data-scroll-speed="-0.3">
+            <!-- Grid overlay moving inside the parallax element -->
+            <div class="absolute inset-0 bg-[radial-gradient(#312e81_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+            <!-- Dynamic floating geometric SVG vector within background -->
+            <div class="absolute top-1/4 left-1/3 w-[350px] h-[350px] rounded-full bg-gradient-to-tr from-purple-500/20 to-indigo-500/20 filter blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-2xl px-4">
+            <h2 class="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase leading-none mb-4">
+                PARALLAX DEPTH ENGINE
+            </h2>
+            <p class="text-gray-400 text-sm sm:text-base font-light tracking-widest uppercase">
+                Notice how this section's grid background glides at an alternative velocity as you scroll.
+            </p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="relative z-20 py-32 px-4 max-w-5xl mx-auto">
+        
+        <!-- Title Header -->
+        <div class="text-center mb-20">
+            <span class="text-sm font-extrabold text-indigo-400 uppercase tracking-widest">CHRONOLOGY</span>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight text-white mt-2">
+                WORK HISTORY
+            </h2>
+            <p class="text-gray-300 text-lg mt-3 max-w-xl mx-auto font-light">
+                Professional projects executed for digital agencies and creative spaces.
+            </p>
+        </div>
+
+        <!-- Vertical Timeline Layout -->
+        <div class="relative border-l-2 border-white/10 ml-4 md:ml-12 space-y-12 py-4">
+            
+            <!-- Timeline Item 1 -->
+            <div class="relative pl-8 md:pl-12 group">
+                <!-- Node Marker -->
+                <div class="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-indigo-500 border-4 border-[#12131a] group-hover:scale-125 transition duration-300 shadow-[0_0_8px_#6366f1]"></div>
+                
+                <div class="glass-card glass-card-hover rounded-3xl p-6 md:p-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <span class="text-xs text-indigo-400 font-extrabold uppercase tracking-wide">Present Position</span>
+                            <h3 class="text-2xl font-bold text-white">Lead Creative Director</h3>
+                        </div>
+                        <span class="text-xs text-gray-300 font-semibold bg-white/5 px-4 py-2 rounded-full border border-white/5">2024 – PRESENT</span>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed font-light">
+                        Overseeing cinematic commercial assets and visual motion standards. Designing physical layouts and custom interactive interfaces for multi-media applications.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="relative pl-8 md:pl-12 group">
+                <div class="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-purple-500 border-4 border-[#12131a] group-hover:scale-125 transition duration-300 shadow-[0_0_8px_#a855f7]"></div>
+                
+                <div class="glass-card glass-card-hover rounded-3xl p-6 md:p-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <span class="text-xs text-purple-400 font-extrabold uppercase tracking-wide">Agency Partner</span>
+                            <h3 class="text-2xl font-bold text-white">Digital Visual Specialist</h3>
+                        </div>
+                        <span class="text-xs text-gray-300 font-semibold bg-white/5 px-4 py-2 rounded-full border border-white/5">2021 – 2024</span>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed font-light">
+                        Engineered dynamic interactive assets and high-fidelity layouts for diverse online campaigns. Directed 3D particle animations using browser-compatible vector protocols.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="relative pl-8 md:pl-12 group">
+                <div class="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#12131a] group-hover:scale-125 transition duration-300 shadow-[0_0_8px_#3b82f6]"></div>
+                
+                <div class="glass-card glass-card-hover rounded-3xl p-6 md:p-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <span class="text-xs text-blue-400 font-extrabold uppercase tracking-wide">Production House</span>
+                            <h3 class="text-2xl font-bold text-white">Junior Motion Designer</h3>
+                        </div>
+                        <span class="text-xs text-gray-300 font-semibold bg-white/5 px-4 py-2 rounded-full border border-white/5">2019 – 2021</span>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed font-light">
+                        Assisted in video capture, color grading pipelines, and motion asset assembly. Learned industry-grade workflows for production speed and compression optimization.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact / Foot Section -->
+    <section id="contact" class="relative z-20 py-32 px-4 max-w-4xl mx-auto">
+        <div class="glass-card rounded-[40px] p-8 md:p-16 border border-white/10 text-center relative overflow-hidden shadow-2xl">
+            <!-- Glass Inner glow accent -->
+            <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-72 h-72 bg-indigo-500/15 filter blur-3xl rounded-full"></div>
+
+            <div class="relative z-10 max-w-xl mx-auto">
+                <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest bg-indigo-500/10 px-4 py-1.5 rounded-full border border-indigo-500/20">Get In Touch</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white mt-4">
+                    START A PROJECT
+                </h2>
+                <p class="text-gray-300 mt-3 font-light text-base sm:text-lg">
+                    Do you need cinematic video direction, structural layout configurations, or an interactive creative website? Reach out below.
+                </p>
+
+                <!-- Custom Form element styling -->
+                <form onsubmit="handleFormSubmission(event)" class="mt-10 space-y-4 text-left">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2 ml-1">Your Name</label>
+                            <input required type="text" id="contact-name" class="w-full bg-[#1b1c26]/80 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm outline-none focus:border-indigo-500/50 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2 ml-1">Email Address</label>
+                            <input required type="email" id="contact-email" class="w-full bg-[#1b1c26]/80 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm outline-none focus:border-indigo-500/50 transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2 ml-1">Message Content</label>
+                        <textarea required id="contact-message" rows="4" class="w-full bg-[#1b1c26]/80 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm outline-none focus:border-indigo-500/50 transition"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-white hover:bg-gray-200 text-black font-bold py-4 rounded-2xl shadow-xl transition transform active:scale-[0.98] text-center text-sm uppercase tracking-wider">
+                        Send Message ✉
+                    </button>
+                </form>
+
+                <!-- Feedback Display Box -->
+                <div id="form-feedback" class="mt-6 p-4 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-sm hidden"></div>
+
+            </div>
+        </div>
+
+        <footer class="mt-16 text-center text-xs text-gray-500">
+            <p>© 2026 Jefferson. Built utilizing Apple visual concepts, advanced layout scripts, and Parallax translation engines. All rights reserved.</p>
+        </footer>
+    </section>
+
+    <script>
+        // --- 1. DYNAMIC SCROLL PARALLAX ENGINE ---
+        // Listens to global scroll updates and shifts specific elements based on configured speed variables
+        window.addEventListener('scroll', () => {
+            const scrolledY = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+
+            parallaxElements.forEach(element => {
+                // Get the specific speed scale (can be positive or negative)
+                const speed = parseFloat(element.getAttribute('data-scroll-speed')) || 0.2;
+                
+                // Calculate pixel offset translation
+                const offset = scrolledY * speed;
+                
+                // Translate the layer vertically
+                element.style.transform = `translateY(${offset}px)`;
+            });
+        });
+
+        // --- 2. INTERACTIVE IPHONE 3D HOVER EFFECT ---
+        // Mouse movement coordinates calculate physical perspective tilt
+        const deviceWrapper = document.getElementById('hero-device-wrapper');
+        const internalDevice = document.getElementById('iphone-17-device');
+
+        if (deviceWrapper && internalDevice) {
+            deviceWrapper.addEventListener('mousemove', (e) => {
+                const rect = deviceWrapper.getBoundingClientRect();
+                
+                // Track cursor coordinates relative to screen mockup centerpoint
+                const x = e.clientX - rect.left - (rect.width / 2);
+                const y = e.clientY - rect.top - (rect.height / 2);
+
+                // Math limits to ensure cinematic transition without screen visual breaking
+                const rotateX = -(y / (rect.height / 2)) * 18;
+                const rotateY = (x / (rect.width / 2)) * 18;
+
+                // Grab scroll state of the item dynamically so the scroll translation doesn't conflict
+                const scrolledY = window.pageYOffset;
+                const scrollSpeed = parseFloat(deviceWrapper.getAttribute('data-scroll-speed')) || -0.2;
+                const scrollOffset = scrolledY * scrollSpeed;
+
+                // Apply rotation matrices with dynamic scroll translation intact
+                internalDevice.style.transform = `translateY(${scrollOffset}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            // Restore equilibrium parameters when cursor departs
+            deviceWrapper.addEventListener('mouseleave', () => {
+                const scrolledY = window.pageYOffset;
+                const scrollSpeed = parseFloat(deviceWrapper.getAttribute('data-scroll-speed')) || -0.2;
+                const scrollOffset = scrolledY * scrollSpeed;
+
+                internalDevice.style.transform = `translateY(${scrollOffset}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        }
+
+        // --- 3. SIMULATED CONTACT FORM CONSOLE ---
+        function handleFormSubmission(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('contact-name').value;
+            const msg = document.getElementById('contact-message').value;
+            const feedback = document.getElementById('form-feedback');
+
+            if (feedback) {
+                feedback.innerHTML = `✨ <strong>Success!</strong> Hi ${name}, your mock message containing: "${msg.substring(0, 35)}..." has been safely registered in the interface log. Let's connect!`;
+                feedback.classList.remove('hidden');
+
+                // Clear fields
+                document.getElementById('contact-name').value = '';
+                document.getElementById('contact-email').value = '';
+                document.getElementById('contact-message').value = '';
+
+                setTimeout(() => {
+                    feedback.classList.add('hidden');
+                }, 7000);
+            }
+        }
+    </script>
 </body>
 </html>
