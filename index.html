@@ -37,6 +37,15 @@
             box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
         }
 
+        /* High-opacity background override specifically for mobile dropdown clarity */
+        .glass-nav-mobile {
+            background: rgba(18, 19, 26, 0.96);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.6);
+        }
+
         .glass-card {
             background: rgba(30, 32, 45, 0.5);
             backdrop-filter: blur(16px);
@@ -165,8 +174,8 @@
                 </button>
             </div>
 
-            <!-- Mobile Glass Dropdown Menu -->
-            <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 mt-3 glass-nav rounded-3xl p-6 flex-col gap-4 md:hidden z-50">
+            <!-- Mobile Glass Dropdown Menu (Now with heavy high-opacity background override) -->
+            <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 mt-3 glass-nav-mobile rounded-3xl p-6 flex-col gap-4 md:hidden z-50">
                 <a href="#about" class="mobile-nav-link text-sm font-medium tracking-wide text-gray-300 hover:text-white py-2 border-b border-white/5">About</a>
                 <a href="#portfolio" class="mobile-nav-link text-sm font-medium tracking-wide text-gray-300 hover:text-white py-2 border-b border-white/5">Case</a>
                 <a href="#experience" class="mobile-nav-link text-sm font-medium tracking-wide text-gray-300 hover:text-white py-2 border-b border-white/5">History</a>
@@ -200,86 +209,116 @@
             </svg>
         </a>
 
-        <!-- ENDLESS REELS / SHORTS CAROUSEL TICKER (LAZY LOAD ENABLED) -->
+        <!-- ENDLESS REELS / SHORTS CAROUSEL TICKER (LAZY LOAD ENABLED WITH PREMIUM GLASS PLAY BUTTON) -->
         <div class="w-full relative z-20 overflow-hidden py-4 mb-12 [mask-image:linear-gradient(to_right,transparent_0%,#000_15%,#000_85%,transparent_100%)]">
             <div class="ticker-track gap-6">
                 
                 <!-- Set 1 (Original 10 Items) -->
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="QGvColIpA54" style="background-image: url('https://i.ytimg.com/vi/QGvColIpA54/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="8Xpmxj8tkk4" style="background-image: url('https://i.ytimg.com/vi/8Xpmxj8tkk4/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="l7gamo3jTxw" style="background-image: url('https://i.ytimg.com/vi/l7gamo3jTxw/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="COFlAMVFQss" style="background-image: url('https://i.ytimg.com/vi/COFlAMVFQss/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="nW0u31RbMUs" style="background-image: url('https://i.ytimg.com/vi/nW0u31RbMUs/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="QGvColIpA54" style="background-image: url('https://i.ytimg.com/vi/QGvColIpA54/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="8Xpmxj8tkk4" style="background-image: url('https://i.ytimg.com/vi/8Xpmxj8tkk4/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="l7gamo3jTxw" style="background-image: url('https://i.ytimg.com/vi/l7gamo3jTxw/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="COFlAMVFQss" style="background-image: url('https://i.ytimg.com/vi/COFlAMVFQss/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="nW0u31RbMUs" style="background-image: url('https://i.ytimg.com/vi/nW0u31RbMUs/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg transition-transform duration-300 group-hover/reel:scale-110">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Set 2 (Seamless Infinite Scrolling Clones) -->
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel select-none">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="QGvColIpA54" style="background-image: url('https://i.ytimg.com/vi/QGvColIpA54/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel select-none">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="8Xpmxj8tkk4" style="background-image: url('https://i.ytimg.com/vi/8Xpmxj8tkk4/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel select-none">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="l7gamo3jTxw" style="background-image: url('https://i.ytimg.com/vi/l7gamo3jTxw/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel select-none">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="COFlAMVFQss" style="background-image: url('https://i.ytimg.com/vi/COFlAMVFQss/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
                 <div class="w-[260px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group/reel select-none">
                     <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:scale-105" data-video-id="nW0u31RbMUs" style="background-image: url('https://i.ytimg.com/vi/nW0u31RbMUs/hqdefault.jpg');">
-                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">▶</div>
+                        <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-xl shadow-lg">
+                            <span class="text-white text-xs tracking-widest pl-1 font-semibold">▶</span>
+                        </div>
                     </div>
                 </div>
 
@@ -366,15 +405,17 @@
                 </p>
             </div>
 
-            <!-- Bento Video Grid (Lazy loaded to prevent mobile overhead) -->
+            <!-- Bento Video Grid (Lazy loaded with premium play buttons) -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
-                <!-- Main Featured Video Card (Lazy Loading Engine Enabled) -->
+                <!-- Main Featured Video Card (Lazy Loading Engine Enabled with Glass Play button) -->
                 <div class="glass-card rounded-[36px] overflow-hidden border border-white/10 md:col-span-2 shadow-2xl relative">
                     <div class="aspect-video w-full bg-black relative group/featured">
                         <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:opacity-95" data-video-id="ScMzIvxBSi4" style="background-image: url('https://i.ytimg.com/vi/ScMzIvxBSi4/maxresdefault.jpg');">
                             <!-- Large Overlay Play Icon -->
-                            <div class="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-3xl shadow-2xl transition-transform duration-300 group-hover/featured:scale-110">▶</div>
+                            <div class="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-3xl shadow-2xl transition-transform duration-300 group-hover/featured:scale-110">
+                                <span class="text-white text-xl tracking-widest pl-1 font-semibold">▶</span>
+                            </div>
                         </div>
                     </div>
                     <div class="p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-[#1a1c26]/80">
@@ -393,7 +434,9 @@
                 <div class="glass-card rounded-[32px] overflow-hidden border border-white/10 flex flex-col justify-between shadow-xl">
                     <div class="aspect-video w-full bg-black relative group/sec1">
                         <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:opacity-95" data-video-id="dQw4w9WgXcQ" style="background-image: url('https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg');">
-                            <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-2xl shadow-xl transition-transform duration-300 group-hover/sec1:scale-110">▶</div>
+                            <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-2xl shadow-xl transition-transform duration-300 group-hover/sec1:scale-110">
+                                <span class="text-white text-sm tracking-widest pl-1 font-semibold">▶</span>
+                            </div>
                         </div>
                     </div>
                     <div class="p-6 bg-[#1a1c26]/80 flex-grow">
@@ -408,7 +451,9 @@
                     <div class="aspect-video w-full bg-black relative group/sec2">
                         <!-- High performance alternate YouTube embed that holds permissions -->
                         <div class="lazy-yt absolute inset-0 cursor-pointer bg-cover bg-center flex items-center justify-center transition-all duration-300 hover:opacity-95" data-video-id="EngW7tLk6r8" style="background-image: url('https://i.ytimg.com/vi/EngW7tLk6r8/maxresdefault.jpg');">
-                            <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-2xl shadow-xl transition-transform duration-300 group-hover/sec2:scale-110">▶</div>
+                            <div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-2xl shadow-xl transition-transform duration-300 group-hover/sec2:scale-110">
+                                <span class="text-white text-sm tracking-widest pl-1 font-semibold">▶</span>
+                            </div>
                         </div>
                     </div>
                     <div class="p-6 bg-[#1a1c26]/80 flex-grow">
@@ -721,7 +766,3 @@
     </script>
 </body>
 </html>
-```
-eof
-
-The responsive mobile dropdown menu layout is successfully configured and running. You can compile this copy of `index.html` on GitHub to see the gorgeous visual results!
