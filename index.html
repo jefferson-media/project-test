@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jefferson — Creative Director & Frontend Engineer</title>
+    
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <!-- Tailwind CSS for robust structural utilities -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Outfit & Playfair fonts for a high-end, modern editorial contrast -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght=0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -86,14 +90,34 @@
             overflow: hidden;
         }
 
-        /* 3D Isometric Viewport Container */
-        .perspective-container {
-            perspective: 2500px;
-        }
-
         /* Smooth custom transitions */
         .smooth-transition {
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- STREAMING_CHUNK: Configured styling for endless moving reel carousels --- */
+        /* CSS Infinite Horizontal Loop Animation Setup */
+        @keyframes endlessTicker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: endlessTicker 50s linear infinite;
+        }
+        .ticker-track:hover {
+            animation-play-state: paused; /* Pauses infinite slide on cursor hover */
+        }
+
+        /* Dynamic Nav Link Active Background Bubble Indicator */
+        .nav-link {
+            position: relative;
+            z-index: 10;
+            transition: color 0.3s ease;
+        }
+        .nav-link.active-bubble {
+            color: #ffffff !important;
         }
     </style>
 </head>
@@ -115,110 +139,122 @@
         <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
     </div>
 
-    <!-- Navigation Bar: High Contrast and Extremely Distinct against updated canvas -->
-    <header class="fixed top-6 left-0 right-0 z-50 px-4">
-        <nav class="max-w-5xl mx-auto glass-nav rounded-full px-6 py-4 flex items-center justify-between shadow-2xl">
+    <!-- --- STREAMING_CHUNK: Building the sticky glass navigation bar --- -->
+    <!-- Sticky Glass Navigation Header: Kept persistent at the top of the viewport -->
+    <header class="sticky top-0 z-50 px-4 pt-6 pb-2">
+        <nav class="max-w-5xl mx-auto glass-nav rounded-full px-8 py-4 flex items-center justify-between shadow-2xl relative">
             <!-- Sleek Tech Logo -->
             <a href="#" class="text-2xl font-black tracking-tight text-white hover:opacity-85 transition flex items-center gap-2">
                 <span class="w-4 h-4 rounded-full bg-indigo-500 inline-block shadow-[0_0_12px_#6366f1]"></span>
                 jefferson.
             </a>
 
-            <!-- Centered Desktop Menu -->
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#about" class="text-sm font-medium text-gray-300 hover:text-white transition">About</a>
-                <a href="#portfolio" class="text-sm font-medium text-gray-300 hover:text-white transition">Showreel</a>
-                <a href="#experience" class="text-sm font-medium text-gray-300 hover:text-white transition">History</a>
-                <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-white transition">Contact</a>
+            <!-- Centered Desktop Menu with customized word-tracking letter-spacing -->
+            <div class="hidden md:flex items-center gap-10 relative" id="nav-menu-wrapper">
+                <!-- Smooth active transition sliding bubble element -->
+                <div id="nav-active-bubble" class="absolute bg-white/10 rounded-full transition-all duration-300 ease-out pointer-events-none z-0 opacity-0 h-[32px]"></div>
+                
+                <a href="#about" class="nav-link text-sm font-medium tracking-widest text-gray-400 hover:text-white uppercase text-[11px] py-1.5 px-3 z-10">About</a>
+                <a href="#portfolio" class="nav-link text-sm font-medium tracking-widest text-gray-400 hover:text-white uppercase text-[11px] py-1.5 px-3 z-10">Showreel</a>
+                <a href="#experience" class="nav-link text-sm font-medium tracking-widest text-gray-400 hover:text-white uppercase text-[11px] py-1.5 px-3 z-10">History</a>
+                <a href="#contact" class="nav-link text-sm font-medium tracking-widest text-gray-400 hover:text-white uppercase text-[11px] py-1.5 px-3 z-10">Contact</a>
             </div>
 
             <!-- Highly visible High-Contrast Action Button -->
             <div>
-                <a href="#contact" class="btn-primary font-bold text-xs tracking-wide uppercase px-5 py-3 rounded-full inline-block">
+                <a href="#contact" class="btn-primary font-bold text-[11px] tracking-widest uppercase px-6 py-3 rounded-full inline-block">
                     Let's Create ↗
                 </a>
             </div>
         </nav>
     </header>
 
+    <!-- --- STREAMING_CHUNK: Rendering the hero section with endless reels carousel --- -->
     <!-- Hero / Showcase Section -->
-    <section class="relative min-h-screen pt-36 pb-20 flex flex-col items-center justify-center z-10 px-4 overflow-hidden">
+    <section class="relative min-h-screen pt-12 pb-20 flex flex-col items-center justify-center z-10 px-4 overflow-hidden">
         
         <!-- Large Apple-style Bold Typography Content -->
-        <div class="max-w-4xl text-center mb-12 relative z-20">
+        <div class="max-w-4xl text-center mb-14 relative z-20">
             <span class="text-xs tracking-[0.25em] font-extrabold text-indigo-400 uppercase inline-block mb-4 bg-indigo-500/10 px-5 py-2 rounded-full border border-indigo-500/30">
                 CREATIVE PORTFOLIO & WORKREEL
             </span>
             <h1 class="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight text-white leading-none mb-6">
                 JEFFERSON <br>
-                <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">DIMENSIONAL.</span>
+                <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">MEDIA</span>
             </h1>
             <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
                 Exploring the boundaries of motion design, high-fidelity interaction, and commercial video direction. Welcome to my creative workspace.
             </p>
         </div>
 
-        <!-- CSS/SVG Mockup of iPhone 17 Pro Max with Parallax Scroll Translation -->
-        <div class="perspective-container w-full max-w-[340px] sm:max-w-[380px] h-auto relative z-20 cursor-pointer mb-8 parallax-element" data-scroll-speed="-0.2" id="hero-device-wrapper">
-            <!-- The iPhone chassis container -->
-            <div id="iphone-17-device" class="w-full aspect-[9/18.5] glass-card rounded-[55px] p-2 border-[6px] border-[#2e313e] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] relative transition-transform duration-200 ease-out">
+        <!-- ENDLESS REELS / SHORTS CAROUSEL TICKER COMPONENT -->
+        <div class="w-full relative z-20 overflow-hidden py-4 mb-12 [mask-image:linear-gradient(to_right,transparent_0%,#000_15%,#000_85%,transparent_100%)]">
+            <div class="ticker-track gap-6">
                 
-                <!-- Polished Titanium Edge Highlights -->
-                <div class="absolute inset-[-1px] rounded-[54px] border border-white/10 pointer-events-none"></div>
-                <!-- Dynamic island-less fully hidden notch screen graphic representing iPhone 17 Pro -->
-                <div class="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-1 bg-black/60 rounded-full z-30 flex items-center justify-center">
-                    <!-- Embedded camera lens reflection -->
-                    <div class="w-2.5 h-2.5 rounded-full bg-[#080d18] border border-white/5 relative flex items-center justify-center">
-                        <div class="w-1 h-1 rounded-full bg-blue-950/80"></div>
-                    </div>
+                <!-- Set 1 (Original 10 Items using premium vertical YouTube embeds with error-correcting parameters) -->
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?controls=0&mute=1&autoplay=1&loop=1&playlist=ScMzIvxBSi4" title="Video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=0&mute=1&autoplay=1&loop=1&playlist=dQw4w9WgXcQ" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/Fp9p_JHdzP8?controls=0&mute=1&autoplay=1&loop=1&playlist=Fp9p_JHdzP8" title="Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?controls=0&mute=1&autoplay=1&loop=1&playlist=ScMzIvxBSi4" title="Video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=0&mute=1&autoplay=1&loop=1&playlist=dQw4w9WgXcQ" title="Video 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/Fp9p_JHdzP8?controls=0&mute=1&autoplay=1&loop=1&playlist=Fp9p_JHdzP8" title="Video 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?controls=0&mute=1&autoplay=1&loop=1&playlist=ScMzIvxBSi4" title="Video 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=0&mute=1&autoplay=1&loop=1&playlist=dQw4w9WgXcQ" title="Video 8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/Fp9p_JHdzP8?controls=0&mute=1&autoplay=1&loop=1&playlist=Fp9p_JHdzP8" title="Video 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?controls=0&mute=1&autoplay=1&loop=1&playlist=ScMzIvxBSi4" title="Video 10" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
 
-                <!-- Internal Screen Interface Frame -->
-                <div class="w-full h-full rounded-[48px] bg-[#0c0d12] overflow-hidden relative border border-black flex flex-col justify-between p-6">
-                    
-                    <!-- Screen Ambient Glow background inside device -->
-                    <div class="absolute -top-12 -left-12 w-48 h-48 bg-purple-500/20 filter blur-3xl rounded-full"></div>
-                    <div class="absolute -bottom-12 -right-12 w-48 h-48 bg-blue-500/20 filter blur-3xl rounded-full"></div>
-
-                    <!-- Screen UI - Top Panel -->
-                    <div class="flex items-center justify-between text-[11px] text-gray-400 font-semibold z-20 relative pt-1">
-                        <span>9:41</span>
-                        <div class="flex items-center gap-1.5">
-                            <!-- 5G Bars -->
-                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M4 18h2v2H4zm4-4h2v6H8zm4-4h2v10h-2zm4-4h2v14h-2zm4-4h2v18h-2z"/></svg>
-                            <!-- Battery Capsule -->
-                            <div class="w-5.5 h-3 border border-gray-400 rounded-sm p-[1px] flex items-center">
-                                <div class="w-3.5 h-full bg-white rounded-2xs"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Screen Content Middle (Futuristic Showcase Panel) -->
-                    <div class="my-auto z-20 text-left relative flex flex-col gap-4">
-                        <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 flex items-center justify-center border border-indigo-400/30">
-                            <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white leading-tight">Jefferson's Media Reel</h3>
-                            <p class="text-xs text-gray-400 mt-1">Scroll down to view my custom cinematic works and direct designs.</p>
-                        </div>
-                        <!-- Mini glass button mimicking dynamic app widget -->
-                        <div class="glass-card rounded-2xl p-3 border border-white/10 flex items-center gap-3 bg-white/5">
-                            <div class="w-8 h-8 rounded-full bg-red-500/30 flex items-center justify-center text-red-400 text-xs font-bold animate-pulse">●</div>
-                            <div>
-                                <h4 class="text-[10px] text-gray-300 font-bold tracking-wide uppercase">Active Showreel</h4>
-                                <p class="text-xs text-white font-medium">Stream Active — 4K</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Screen UI - Bottom Panel -->
-                    <div class="z-20 relative flex justify-center pb-2">
-                        <!-- Navigation Indicator Pill -->
-                        <div class="w-32 h-1 bg-white/40 rounded-full"></div>
-                    </div>
-
+                <!-- Set 2 (Exact Duplicate Clones for seamless infinite looping wrapping) -->
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?controls=0&mute=1&autoplay=1&loop=1&playlist=ScMzIvxBSi4" title="Video 1 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=0&mute=1&autoplay=1&loop=1&playlist=dQw4w9WgXcQ" title="Video 2 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/Fp9p_JHdzP8?controls=0&mute=1&autoplay=1&loop=1&playlist=Fp9p_JHdzP8" title="Video 3 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?controls=0&mute=1&autoplay=1&loop=1&playlist=ScMzIvxBSi4" title="Video 4 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=0&mute=1&autoplay=1&loop=1&playlist=dQw4w9WgXcQ" title="Video 5 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/Fp9p_JHdzP8?controls=0&mute=1&autoplay=1&loop=1&playlist=Fp9p_JHdzP8" title="Video 6 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?controls=0&mute=1&autoplay=1&loop=1&playlist=ScMzIvxBSi4" title="Video 7 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=0&mute=1&autoplay=1&loop=1&playlist=dQw4w9WgXcQ" title="Video 8 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/Fp9p_JHdzP8?controls=0&mute=1&autoplay=1&loop=1&playlist=Fp9p_JHdzP8" title="Video 9 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="w-[240px] aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 shadow-2xl glass-card flex-shrink-0 relative group">
+                    <iframe class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?controls=0&mute=1&autoplay=1&loop=1&playlist=ScMzIvxBSi4" title="Video 10 Clone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
             </div>
         </div>
 
@@ -261,15 +297,15 @@
 
             <!-- Right Interactive Portrait & Bento Block -->
             <div class="md:col-span-5 flex flex-col gap-6">
-                <!-- Jefferson Portrait Card (Uses premium unsplash vector background and styled layout frame) -->
+                <!-- Jefferson Portrait Card -->
                 <div class="glass-card rounded-[32px] overflow-hidden p-3 border border-white/10 group">
                     <div class="w-full aspect-square rounded-[24px] bg-gradient-to-tr from-indigo-500 via-[#1c1e29] to-purple-600 relative overflow-hidden flex items-center justify-center">
                         <!-- Live Gravatar Profile Sync -->
-<img 
-  src="https://www.gravatar.com/avatar/57e2288f0e78888f0cc1b5a844802f23e676d893c447cfc373fa15dd1b70bbee?s=400" 
-  alt="Jefferson Profile" 
-  class="w-40 h-40 object-cover rounded-full absolute group-hover:scale-110 smooth-transition" 
-/>
+                        <img 
+                          src="https://www.gravatar.com/avatar/57e2288f0e78888f0cc1b5a844802f23e676d893c447cfc373fa15dd1b70bbee?s=400" 
+                          alt="Jefferson Profile" 
+                          class="w-40 h-40 object-cover rounded-full absolute group-hover:scale-110 smooth-transition" 
+                        />
                         
                         <!-- Premium Portfolio Initial Branding Overlay -->
                         <div class="absolute bottom-6 left-6 text-left">
@@ -295,6 +331,7 @@
         </div>
     </section>
 
+    <!-- --- STREAMING_CHUNK: Updating the main showcase video reels to resolve error 153 natively --- -->
     <!-- Portfolio Video Section -->
     <section id="portfolio" class="relative z-20 py-32 bg-black/25 border-y border-white/5">
         <div class="max-w-5xl mx-auto px-4">
@@ -313,16 +350,16 @@
             <!-- Bento Video Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
-                <!-- Main Featured Video Card (Highly Elevated UI) -->
+                <!-- Main Featured Video Card (Updated with correct referrer options) -->
                 <div class="glass-card rounded-[36px] overflow-hidden border border-white/10 md:col-span-2 shadow-2xl">
                     <div class="aspect-video w-full bg-black relative">
-                        <!-- High fidelity YouTube layout component -->
                         <iframe 
                             class="w-full h-full rounded-t-[34px]" 
-                            src="https://www.youtube.com/embed/ScMzIvxBSi4?si=AppleVisionProShowcase" 
+                            src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?si=AppleVisionProShowcase&rel=0&enablejsapi=1" 
                             title="YouTube video player" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin"
                             allowfullscreen>
                         </iframe>
                     </div>
@@ -343,10 +380,11 @@
                     <div class="aspect-video w-full bg-black">
                         <iframe 
                             class="w-full h-full" 
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0&enablejsapi=1" 
                             title="YouTube video player" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin"
                             allowfullscreen>
                         </iframe>
                     </div>
@@ -362,10 +400,11 @@
                     <div class="aspect-video w-full bg-black">
                         <iframe 
                             class="w-full h-full" 
-                            src="https://www.youtube.com/embed/Fp9p_JHdzP8" 
+                            src="https://www.youtube-nocookie.com/embed/Fp9p_JHdzP8?rel=0&enablejsapi=1" 
                             title="YouTube video player" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin"
                             allowfullscreen>
                         </iframe>
                     </div>
@@ -378,26 +417,6 @@
 
             </div>
 
-        </div>
-    </section>
-
-    <!-- EXPLICIT PARALLAX SCROLL INTERMISSION SECTION -->
-    <section class="relative h-[65vh] flex items-center justify-center overflow-hidden border-b border-white/5">
-        <!-- Parallax Background Layer specific to this section -->
-        <div class="absolute inset-0 bg-[#161722] w-full h-[150%] top-[-25%] parallax-element select-none pointer-events-none" data-scroll-speed="-0.3">
-            <!-- Grid overlay moving inside the parallax element -->
-            <div class="absolute inset-0 bg-[radial-gradient(#312e81_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
-            <!-- Dynamic floating geometric SVG vector within background -->
-            <div class="absolute top-1/4 left-1/3 w-[350px] h-[350px] rounded-full bg-gradient-to-tr from-purple-500/20 to-indigo-500/20 filter blur-3xl"></div>
-        </div>
-
-        <div class="relative z-10 text-center max-w-2xl px-4">
-            <h2 class="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase leading-none mb-4">
-                PARALLAX DEPTH ENGINE
-            </h2>
-            <p class="text-gray-400 text-sm sm:text-base font-light tracking-widest uppercase">
-                Notice how this section's grid background glides at an alternative velocity as you scroll.
-            </p>
         </div>
     </section>
 
@@ -519,64 +538,83 @@
         </div>
 
         <footer class="mt-16 text-center text-xs text-gray-500">
-            <p>© 2026 Jefferson. Built utilizing Apple visual concepts, advanced layout scripts, and Parallax translation engines. All rights reserved.</p>
+            <p>© 2026 Jefferson Media. All rights reserved.</p>
         </footer>
     </section>
 
+    <!-- --- STREAMING_CHUNK: Implementing the scrolling active-navigation bubble transition scripts --- -->
     <script>
         // --- 1. DYNAMIC SCROLL PARALLAX ENGINE ---
-        // Listens to global scroll updates and shifts specific elements based on configured speed variables
         window.addEventListener('scroll', () => {
             const scrolledY = window.pageYOffset;
             const parallaxElements = document.querySelectorAll('.parallax-element');
 
             parallaxElements.forEach(element => {
-                // Get the specific speed scale (can be positive or negative)
                 const speed = parseFloat(element.getAttribute('data-scroll-speed')) || 0.2;
-                
-                // Calculate pixel offset translation
                 const offset = scrolledY * speed;
-                
-                // Translate the layer vertically
                 element.style.transform = `translateY(${offset}px)`;
             });
         });
 
-        // --- 2. INTERACTIVE IPHONE 3D HOVER EFFECT ---
-        // Mouse movement coordinates calculate physical perspective tilt
-        const deviceWrapper = document.getElementById('hero-device-wrapper');
-        const internalDevice = document.getElementById('iphone-17-device');
+        // --- 2. SMOOTH SLIDING ACTIVE-NAVIGATION BUBBLE ---
+        const bubble = document.getElementById('nav-active-bubble');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+        const menuWrapper = document.getElementById('nav-menu-wrapper');
 
-        if (deviceWrapper && internalDevice) {
-            deviceWrapper.addEventListener('mousemove', (e) => {
-                const rect = deviceWrapper.getBoundingClientRect();
-                
-                // Track cursor coordinates relative to screen mockup centerpoint
-                const x = e.clientX - rect.left - (rect.width / 2);
-                const y = e.clientY - rect.top - (rect.height / 2);
+        // Dynamically recalculate and move bubble to cover the target active nav element smoothly
+        function updateBubblePosition(targetElement) {
+            if (!targetElement || !bubble) return;
+            
+            const targetRect = targetElement.getBoundingClientRect();
+            const wrapperRect = menuWrapper.getBoundingClientRect();
 
-                // Math limits to ensure cinematic transition without screen visual breaking
-                const rotateX = -(y / (rect.height / 2)) * 18;
-                const rotateY = (x / (rect.width / 2)) * 18;
-
-                // Grab scroll state of the item dynamically so the scroll translation doesn't conflict
-                const scrolledY = window.pageYOffset;
-                const scrollSpeed = parseFloat(deviceWrapper.getAttribute('data-scroll-speed')) || -0.2;
-                const scrollOffset = scrolledY * scrollSpeed;
-
-                // Apply rotation matrices with dynamic scroll translation intact
-                internalDevice.style.transform = `translateY(${scrollOffset}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-
-            // Restore equilibrium parameters when cursor departs
-            deviceWrapper.addEventListener('mouseleave', () => {
-                const scrolledY = window.pageYOffset;
-                const scrollSpeed = parseFloat(deviceWrapper.getAttribute('data-scroll-speed')) || -0.2;
-                const scrollOffset = scrolledY * scrollSpeed;
-
-                internalDevice.style.transform = `translateY(${scrollOffset}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
+            // Calculate offset distance relative to the parent menu list
+            const leftOffset = targetRect.left - wrapperRect.left;
+            
+            // Apply coordinates with custom transitions on the layout
+            bubble.style.left = `${leftOffset}px`;
+            bubble.style.width = `${targetRect.width}px`;
+            bubble.style.height = `${targetRect.height}px`;
+            bubble.style.top = `${targetRect.top - wrapperRect.top}px`;
+            bubble.style.opacity = '1';
         }
+
+        function updateScrollSpy() {
+            let currentActiveSectionId = "";
+            const scrollPosition = window.scrollY + 180; // Offset for header collision trigger point
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentActiveSectionId = section.getAttribute('id');
+                }
+            });
+
+            let activeLink = null;
+            navLinks.forEach(link => {
+                const targetId = link.getAttribute('href').substring(1);
+                if (targetId === currentActiveSectionId) {
+                    link.classList.add('active-bubble');
+                    activeLink = link;
+                } else {
+                    link.classList.remove('active-bubble');
+                }
+            });
+
+            if (activeLink) {
+                updateBubblePosition(activeLink);
+            } else {
+                if (bubble) bubble.style.opacity = '0';
+            }
+        }
+
+        // Hook up the scroll spy and resize window handlers (Hover events removed as requested)
+        window.addEventListener('scroll', updateScrollSpy);
+        window.addEventListener('load', updateScrollSpy);
+        window.addEventListener('resize', updateScrollSpy);
 
         // --- 3. SIMULATED CONTACT FORM CONSOLE ---
         function handleFormSubmission(event) {
